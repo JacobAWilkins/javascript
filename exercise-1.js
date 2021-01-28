@@ -18,7 +18,7 @@
             }
         }
         // tekCamp();
-
+        console.log(tekCamp);
 
 
         /************************************************************************************/
@@ -594,59 +594,36 @@
                 return item;
             }
         });
-    numbers2.forEach((num4, index, obj) => {
-            if (typeof num4 == 'string') {
-                switch(num4) {
-                    case 'zero' || '0':
-                        numbers2[index] = 0;
-                        break;
-                    case 'one' || '1':
-                        numbers2[index] = 1;
-                        break;
-                    case 'two' || '2':
-                        numbers2[index] = 2;
-                        break;
-                    case 'three' || '3':
-                        numbers2[index] = 3;
-                        break;
-                    case 'four' || '4':
-                        numbers2[index] = 4;
-                        break;
-                    case 'five' || '5':
-                        numbers2[index] = 5;
-                        break;
-                    case 'six' || '6':
-                        numbers2[index] = 6;
-                        break;
-                    case 'seven' || '7':
-                        numbers2[index] = 7;
-                        break;
-                    case 'eight' || '8':
-                        numbers2[index] = 8;
-                        break;
-                    case 'nine' || '9':
-                        numbers2[index] = 9;
-                        break;
-                    case 'ten' || '10':
-                        numbers2[index] = 10;
-                        break;
-                    default:
-                        numbers2.splice(index, 1);
-                        break;
-                }
+        numbers2 = numbers2.map((item) => {
+            if (Number.parseInt(item)) {
+                return Number.parseInt(item);
             }
-        });
-        console.log("testing... " + numbers2);
+
+            const stringNumbers = { 'zero': 0, 'one': 1, 'two': 2, 'three': 3, 'four': 4, 'five': 5, 'six': 6, 'seven': 7, 'eight': 8, 'nine': 9 };
+            if (stringNumbers[item]) {
+                return stringNumbers[item];
+            }
+
+        }).filter((num4) => Number.isInteger(num4));
+        // console.log("testing... " + numbers2);
+
         function maxNumber(numbers2) {
             //your code...
-            
+            return Math.max(...numbers2);
         }
 
         //After the numbers array has been cleaned up to only have numbers in it, Write a function that sorts the modified numbers array.  Allow the function to sort the array in descending order as well.
 
-        function sortNums(numbers,desc=false) {
+        function sortNums(numbers2,desc=false) {
             //your code...
+            if (desc == false) {
+                return numbers2.sort(function(a, b) { return a - b });
+            } else {
+                return numbers2.sort(function(a, b) { return b - a });
+            }
         };
+        // console.log("testing... " + sortNums(numbers2, true));
+        // console.log("testing... " + sortNums(numbers2));
 
 
 
@@ -655,7 +632,16 @@
 
 
             //your code...
+            // A new feature of ES6+ is arrow functions
+            // Here's an example of the difference from ES5 to ES6 (I've commented out the code so the compiler doesn't throw an error for the same variable being declared twice):
 
+            // ES5 example
+            // var x = function (x, y) {
+            //     return x / y;
+            // }
+
+            // ES6 example
+            // const x = (x, y) => x / y;
 
 
         /************************************************************* */
@@ -663,8 +649,6 @@
 
         const mapObj = new Map();
         //mapObj.set({company : "TEKsystems"},"object");
-        var key = "object";
-        var object = {};
 
         mapObj.set("This is a string","string");
         mapObj.set(128,"number");
@@ -673,15 +657,26 @@
         mapObj.set(null,"null");
         mapObj.set(undefined,"undefined");
 
-        console.log(mapObj.has({company : "TEKsystems"}));
+        //console.log(mapObj.has({company : "TEKsystems"}));
 
         //The above console.log() statmeent returns false.  Write another console.log() statement explaining why this line of code prints false.  Refactor the code `mapObj.set()`, so the code : `mapObj.has() returns true.  The goal is to successfully check and see if {company : "TEKsystems"} exists in the mapObj.
 
         //your code...
+        console.log("This function only works when you use a reference to the object instead of the value of the object");
+        
+        const obj= {company : "TEKsystems"};
+        mapObj.set(obj, "object");
+        console.log(mapObj.has(obj));
 
 
         //loop through the mapObj and create a new array of only the data types, leaving out the example keys of the mapObj.  Use array methods to do this.  Example output : ['string',number','boolean',array','object']
 
+        //your code...
+        var dataTypesArr = [];
+        mapObj.forEach((item) => {
+            dataTypesArr.push(item);
+        });
+        // console.log(dataTypesArr);
 
         /************************************************************* */
         //Create 4 mathematical function expressions, add,subtract,multiply,divide.  put them in an array, and create a doMath() function that randomly selects one of the mathematical operations whenever it is invoked.  The doMath() function should print to the console the mathetmatical function that was carried out.  The doMath() function should return the computed value of any operation performed.
@@ -718,26 +713,31 @@
         //- Create a Higher Order Function called multiple(x) that takes a single parameter.  This HOF should return another function fn(y) that accepts another single parameter y.  This inner function should compute the product of it's parameter with the parameter passed into multiple.  Use this returned "first-class" function to compute triples of any given number.
 
         //your code...
-        function multiple(x) {
+        var multiple = (x) => {
             return (y) => {
                 return x * y;
-            };
+            }
         }
-        console.log("testing... " + multiple(4));
+        // console.log("testing... " + multiple(4)(2));
 
 
         //- Write an outer function called stockGain that has cost basis (basis) as a parameter; declare a variable called message that holds " is how much the stock has increased".  Return an inner function with years (yrs) as a parameter and declare a variable for growth rate (r) of 5%. Console log your calculation.
 
         //your code
-        function stockGain() {
+        var stockGain = (basis) => {
             var message = " is how much the stock has increased";
+            return (yrs) => {
+                var r = 0.05;
+                return basis * (r * yrs) + message;
+            }
         }
 
 
         // Once finished, declare a variable called futureValue that holds your stockGain function and enter any amount for the cost basis and a number for the number of years.  Run the function returned by the higher order function to display the future value of the stock.  
 
         //your code...
-
+        var futureValue = stockGain(20);
+        console.log(futureValue(10));
 
 
 // DO NOT DELETE THIS EXPORT
