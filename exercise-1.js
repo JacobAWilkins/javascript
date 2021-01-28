@@ -91,7 +91,7 @@
 
         //your code...
         function carObject(make, model, year, color) {
-            return {make: make, model: model, year: year, color: color};
+            return { make: make, model: model, year: year, color: color} ;
         }
 
 
@@ -102,9 +102,17 @@
 
         //your code...
         function oddOrEven(arr) {
-
+            var res = {};
+            arr.forEach((item, index) => {
+                if (item % 2 == 0) {
+                    res[arr[index]] = "even";
+                } else {
+                    res[arr[index]] = "odd";
+                }
+            });
+            return res;
         }
-
+        // console.dir(oddOrEven([10,23,3,4]));
 
 
         /************************************************************************************/
@@ -112,7 +120,7 @@
         // Write a "for" loop that console.log()'s the first value in the  array, and every 3rd number, i.e. 0, 3, 6, 9: the zeroth, third, sixth, and ninth values.
 
         //your code...
-        for (i = 0; i < numbers.length; i = i + 3) {
+        for (i = 0; i < numbers.length; i += 3) {
             console.log(numbers[i]);
         }
 
@@ -120,11 +128,19 @@
         /************************************************************************************/
         const foodArray = [ 'potatoes', 'tamales', 'lemon','strawberries','chocolate', 'pudding', {program : 'TEKcamp'} ];
         //access the value of the last element of the array and set it to a variable called school.  print the school variable to the console.
-
+        foodArray.pop();
+        foodArray.push('school');
+        // console.log(foodArray);
 
         const adjectiveArray = [ 'salty', 'spicy', 'sour', 'sweet', 'rich','creamy','amazing'];
         // Using both the foodArray and the adjectiveArray, write "for" loop that console.log()'s a sentence for each corresponding value in the arrays. Add the word "is" or "are" depending on if the food is singular or plural.  i.e. "Potatoes are salty", "Lemon is sour".
-
+        for (i = 0; i < foodArray.length; i++) {
+            if (foodArray[i].slice(-1) == "s") {
+                console.log(foodArray[i] + " are " + adjectiveArray[i]);
+            } else {
+                console.log(foodArray[i] + " is " + adjectiveArray[i]);
+            }
+        }
 
         /************************************************************* */
         // Refactor the for() loop to be a while loop.
@@ -136,8 +152,10 @@
 
 
         //your code...
+        i = 0;
         while(i < 10) {
             i++;
+            // console.log(" the value of i in the loop is : " + i);
         }
 
 
@@ -147,11 +165,18 @@
         //use javascript to compute the value of the above statement. Each individual operation needs to be a function expression. run all the functions after defining them, and print the answer to the console.
         
         //your code...
-        function multiply(a, b) { return a * b; }
-        function divide(a, b) { return a / b; }
-        function add(a, b) { return a + b; }
-        function power(a, b) { return a ** b; }
-
+        function multiply(a, b) {
+            return a * b;
+        }
+        function divide(a, b) {
+            return a / b;
+        }
+        function add(a, b) {
+            return a + b;
+        }
+        function power(a, b) {
+            return a ** b;
+        }
         console.log(divide(multiply(add(30, 2), 20), power(10, 2)));
 
 
@@ -197,7 +222,6 @@
             default:
                 console.log("It's a weekend!");
         }
-
 
 
         /************************************************************* */
@@ -638,7 +662,10 @@
         //Add an example of the 5 primary JavaScript data types to the given mapObj.  The key is an example data type, and the value is the name of the data type.  An object data type has already been set as the 1st key / val pair.
 
         const mapObj = new Map();
-        mapObj.set({company : "TEKsystems"},"object");
+        //mapObj.set({company : "TEKsystems"},"object");
+        var key = "object";
+        var object = {};
+
         mapObj.set("This is a string","string");
         mapObj.set(128,"number");
         mapObj.set(true,"boolean");
@@ -683,6 +710,7 @@
         //your code...
         function subtract(a, b) { return a - b }
         // (Other operation were programmed in an earlier exercise)
+
         // console.log("testing... " + doMath(2, 3));
 
 
@@ -690,11 +718,20 @@
         //- Create a Higher Order Function called multiple(x) that takes a single parameter.  This HOF should return another function fn(y) that accepts another single parameter y.  This inner function should compute the product of it's parameter with the parameter passed into multiple.  Use this returned "first-class" function to compute triples of any given number.
 
         //your code...
+        function multiple(x) {
+            return (y) => {
+                return x * y;
+            };
+        }
+        console.log("testing... " + multiple(4));
 
 
         //- Write an outer function called stockGain that has cost basis (basis) as a parameter; declare a variable called message that holds " is how much the stock has increased".  Return an inner function with years (yrs) as a parameter and declare a variable for growth rate (r) of 5%. Console log your calculation.
 
         //your code
+        function stockGain() {
+            var message = " is how much the stock has increased";
+        }
 
 
         // Once finished, declare a variable called futureValue that holds your stockGain function and enter any amount for the cost basis and a number for the number of years.  Run the function returned by the higher order function to display the future value of the stock.  
