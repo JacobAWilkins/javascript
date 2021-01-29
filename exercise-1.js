@@ -30,8 +30,6 @@
         }
 
 
-
-
         /************************************************************************************/
         //Write a function that converts the Celsius temperature back to Fahrenheit. 
 
@@ -39,9 +37,6 @@
         function celsiusFarenheit(c) {
             return 1.8 * c + 32;
         }
-
-
-
 
 
         /************************************************************************************/
@@ -55,11 +50,6 @@
         }
 
 
-
-
-
-
-
         /************************************************************************************/
         // Write a function that converts a string to an array. It should return an array.  
 
@@ -69,11 +59,6 @@
         }
 
 
-
-
-
-
-
         /************************************************************************************/
         // Write a function that reverses your telephone number.  It should return the reversed telephone number.
 
@@ -81,9 +66,6 @@
         function reversePhone(number) {
             return number.split("").reverse().join("");
         }
-
-
-
 
 
         /************************************************************************************/
@@ -157,7 +139,6 @@
             i++;
             // console.log(" the value of i in the loop is : " + i);
         }
-
 
 
         /************************************************************* */
@@ -748,6 +729,3 @@ module.exports = {
 
 
 //*************************************** */
-
-
-
