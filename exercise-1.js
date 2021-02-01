@@ -570,41 +570,47 @@
         // Write a function to find the maximum numerical value of the given array.  Get rid of any non numerical values.  Convert the strings that are numbers to an actual number data type.  ("one" => 1) ("1" => 1).  Use array methods to perform this task.  
         const numbersMixed = [2,23,1,2,1,1,1,2,2.5,20,200,2000,,{k:"val"},20000,19999,1878,140,23,4,true,true,"sk","true-dat","nice","one","two","three","3","tea",[]];
 
-        var numbers2 = numbersMixed.filter((item) => {
-            if (typeof item == 'number' || typeof item == 'string') {
-                return item;
-            }
-        });
-        numbers2 = numbers2.map((item) => {
-            if (Number.parseInt(item)) {
-                return Number.parseInt(item);
-            }
+        function cleanArr(numbersMixed) {
+            var numbers2 = numbersMixed.filter((item) => {
+                if (typeof item == 'number' || typeof item == 'string') {
+                    return item;
+                }
+            });
+            numbers2 = numbers2.map((item) => {
+                if (Number.parseInt(item)) {
+                    return Number.parseInt(item);
+                }
+    
+                const stringNumbers = { 'zero': 0, 'one': 1, 'two': 2, 'three': 3, 'four': 4, 'five': 5, 'six': 6, 'seven': 7, 'eight': 8, 'nine': 9 };
+                if (stringNumbers[item]) {
+                    return stringNumbers[item];
+                }
+    
+            }).filter((num4) => Number.isInteger(num4));
+            // console.log("testing... " + numbers2);
 
-            const stringNumbers = { 'zero': 0, 'one': 1, 'two': 2, 'three': 3, 'four': 4, 'five': 5, 'six': 6, 'seven': 7, 'eight': 8, 'nine': 9 };
-            if (stringNumbers[item]) {
-                return stringNumbers[item];
-            }
+            return numbers2;
+        }
 
-        }).filter((num4) => Number.isInteger(num4));
-        // console.log("testing... " + numbers2);
-
-        function maxNumber(numbers2) {
+        function maxNumber(numbersMixed) {
             //your code...
+            const numbers2 = cleanArr(numbersMixed);
             return Math.max(...numbers2);
         }
 
         //After the numbers array has been cleaned up to only have numbers in it, Write a function that sorts the modified numbers array.  Allow the function to sort the array in descending order as well.
 
-        function sortNums(numbers2,desc=false) {
+        function sortNums(numbersMixed,desc=false) {
             //your code...
+            const numbers2 = cleanArr(numbersMixed);
             if (desc == false) {
                 return numbers2.sort(function(a, b) { return a - b });
             } else {
                 return numbers2.sort(function(a, b) { return b - a });
             }
         };
-        // console.log("testing... " + sortNums(numbers2, true));
-        // console.log("testing... " + sortNums(numbers2));
+        // console.log("testing... " + sortNums(numbersMixed, true));
+        // console.log("testing... " + sortNums(numbersMixed));
 
 
 
@@ -724,7 +730,23 @@
 // DO NOT DELETE THIS EXPORT
 module.exports = {
     tekCamp,
-    canVote
+    canVote,
+    farenheitCelsius,
+    celsiusFarenheit,
+    strToArr,
+    reversePhone,
+    carObject,
+    oddOrEven,
+    multiply,
+    divide,
+    add,
+    subtract,
+    power,
+    chessCalc,
+    cleanArr,
+    maxNumber,
+    sortNums,
+    multiple
 }
 
 
